@@ -38,7 +38,7 @@ public class CarteiraDollar : Carteira
 }
 ```
 
-Interfaces são utilizadas para definir as assinaturas que as classes precisam ter, também conhecidas como contratos. Ou seja, quais comportamentos uma classe deve expor sem implementação concreta ou estado. São bastante utilizadas no desacoplamento de código e injeção de dependências.
+Interfaces são utilizadas para definir as assinaturas que as classes precisam ter, também conhecidas como contratos. Ou seja, quais comportamentos uma classe deve expor sem implementação concreta. São bastante utilizadas no desacoplamento de código e injeção de dependências.
 
 ```csharp
 public interface ICarteira {
