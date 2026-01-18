@@ -1,7 +1,8 @@
-﻿A) Usar uma interface ou uma classe abstrata? Por que? Cite exemplos.
+﻿## A) Usar uma interface ou uma classe abstrata? Por que? Cite exemplos.
 
-Classes abstratas são utilizadas quando existe herança entre as classes, compartilhando estados e comportamentos. Permitindo reutilização de código e implementação de metódos abstratos
+Classes abstratas são utilizadas quando existe herança entre as classes, compartilhando estados e comportamentos. Permitem reutilização de código e implementação de métodos abstratos.
 
+```csharp
 public abstract class Carteira
 {
   public Guid Id {get; set;}
@@ -35,11 +36,11 @@ public class CarteiraDollar : Carteira
       }
     }
 }
+```
 
+Interfaces são utilizadas para definir as assinaturas que as classes precisam ter, também conhecidas como contratos. Ou seja, quais comportamentos uma classe deve expor sem implementação concreta ou estado. São bastante utilizadas no desacoplamento de código e injeção de dependências.
 
-Interfaces são utilizadas para definir as assinaturas que as classes precisam ter, também conhecido como contratos. Ou seja, quais comportamentos uma classe deve expor sem implementação concreta ou estado. São bastante utilizadas no desacoplamento de código e injeção de dependencias.
-
-
+```csharp
 public interface ICarteira {
   decimal Saldo { get; }
   public void Creditar(decimal valor);
@@ -60,14 +61,17 @@ public class Carteira : ICarteira
     Saldo -= valor;
   }
 }
+```
 
-B) Usar herança ou delegação a outros objetos? Por que? Cite exemplos.
+## B) Usar herança ou delegação a outros objetos? Por que? Cite exemplos.
 
-A escolha depende do relacionamento das classes. A herança é utilizada quando definimos que uma classe "É UM", exemplo, Gato é um Animal.
-No fim das contas, o gato terá tudo que um animal tiver, a delegação utilizamos quando precisamos, de fato, delegar uma funcionalidade para outra classe, utilizando seus comportamentos. 
-No mundo real, um Controller do .Net é um ótimo exemplo para a questão, pois ele pode utilizar as duas técnicas. 
-No exemplo abaixo temos a herança do controller com o BaseControllerEle herda e reaproveita as funcionalidades do ControllerBase, e utiliza a delegação ao injetar e reutilizar as funções do IContaService: 
+A escolha depende do relacionamento das classes. A herança é utilizada quando definimos que uma classe "É UM", por exemplo: Gato é um Animal. No fim das contas, o gato terá tudo que um animal tiver.
 
+A delegação é utilizada quando precisamos, de fato, delegar uma funcionalidade para outra classe, utilizando seus comportamentos.
+
+No mundo real, um Controller do .NET é um ótimo exemplo para a questão, pois ele pode utilizar as duas técnicas. No exemplo abaixo temos a herança do controller que herda e reaproveita as funcionalidades do `ControllerBase`, e utiliza a delegação ao injetar e reutilizar as funções do `IContaService`: 
+
+```csharp
 public class ContaController : ControllerBase
 {
   private IContaService _contaService;
@@ -85,5 +89,6 @@ public class ContaController : ControllerBase
   }
 
 }
+```
 
 Nesse cenário, a herança é usada para reaproveitar comportamentos comuns do framework, enquanto a delegação é usada para concentrar a regra de negócio no serviço, deixando o controller mais simples.
